@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">moneyMountain</string>
+
+    <string name="restPrice">총 쌓인 금액</string>
+    <string name="priceUnit">원</string>
+
+    <string name="todayTotalExpenditure">오늘 총 소비</string>
+
+    <string name="seeDetail">자세히보기</string>
 </resources>
