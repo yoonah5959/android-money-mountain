@@ -8,7 +8,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import kotlin.reflect.KClass
 
 
-sealed class BottomNavItem(var title: String, var icon: ImageVector, var route: String) {
+sealed class BottomNavItem(var icon: ImageVector, var route: String) {
 
     companion object {
         fun toList(): List<BottomNavItem> {
@@ -18,7 +18,7 @@ sealed class BottomNavItem(var title: String, var icon: ImageVector, var route: 
         }
     }
 
-    object Home : BottomNavItem("Home", Icons.Rounded.Home, "home")
-    object History : BottomNavItem("History", Icons.Rounded.List, "history")
-    object Setting : BottomNavItem("Setting", Icons.Rounded.Settings, "setting")
+    object Home : BottomNavItem(Icons.Rounded.Home, "home")
+    object History : BottomNavItem(Icons.Rounded.List, "history")
+    object Setting : BottomNavItem(Icons.Rounded.Settings, "setting")
 }
