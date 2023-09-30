@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace = "com.heenu.moneymountain"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.heenu.moneymountain"
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -64,6 +64,8 @@ dependencies {
     implementation(libs.material3)
     implementation(libs.appcompat)
     implementation(libs.material)
+    implementation(libs.androidx.navigation.compose)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
@@ -71,4 +73,5 @@ dependencies {
     androidTestImplementation(libs.ui.test.junit4)
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
+    implementation(kotlin("reflect"))
 }

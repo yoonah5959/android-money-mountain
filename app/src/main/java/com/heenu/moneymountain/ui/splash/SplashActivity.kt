@@ -31,6 +31,7 @@ class SplashActivity : ComponentActivity() {
                     delay(1000)
                     scope.launch {
                         startActivity(MainActivity.newIntent(context = context))
+                        finish()
                     }
                 }
             }
