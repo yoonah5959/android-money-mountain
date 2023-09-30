@@ -7,12 +7,10 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
-import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -22,6 +20,7 @@ import com.heenu.design.ui.theme.HeenuTheme
 import com.heenu.moneymountain.ui.main.page.HistoryScreen
 import com.heenu.moneymountain.ui.main.page.HomeScreen
 import com.heenu.moneymountain.ui.main.page.SettingScreen
+import com.heenu.moneymountain.ui.navigation.NavigationActions
 import timber.log.Timber
 
 
@@ -29,10 +28,22 @@ import timber.log.Timber
 @Composable
 fun MainScreen() {
     val navController = rememberNavController()
+    val navigationActions = remember(navController) {
+        NavigationActions(navController)
+    }
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val selectedDestination: String =
+        navBackStackEntry?.destination?.route ?: BottomNavItem.Home.route
+
     HeenuTheme {
         Scaffold(
             modifier = Modifier.fillMaxSize(),
-            bottomBar = { BottomNavBar(navController) }) { padding ->
+            bottomBar = {
+                BottomNavBar(
+                    selectedDestination,
+                    navigationActions::navigateTo
+                )
+            }) { padding ->
             NavigationGraph(padding, navController)
         }
     }
@@ -40,15 +51,19 @@ fun MainScreen() {
 
 
 @Composable
-fun BottomNavBar(navController: NavHostController) {
-    val backStackEntry = navController.currentBackStackEntryAsState()
+fun BottomNavBar(
+    selectedDestination: String,
+    navigateToTopLevelDestination: (BottomNavItem) -> Unit
+) {
+
+
     NavigationBar {
         BottomNavItem.toList().forEach { item ->
-            val selected = item.route == backStackEntry.value?.destination?.route
-            Timber.d("tag1 NavigationBar ${backStackEntry.value?.destination?.route}  ${item.route}")
+            val selected = item.route == selectedDestination
+            Timber.d("tag1 NavigationBar $selectedDestination  ${item.route}")
             NavigationBarItem(
                 selected = selected,
-                onClick = { navController.navigate(item.route) },
+                onClick = { navigateToTopLevelDestination(item) },
                 icon = {
                     Icon(
                         imageVector = item.icon,
