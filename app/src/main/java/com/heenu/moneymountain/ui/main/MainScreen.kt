@@ -1,8 +1,14 @@
 package com.heenu.moneymountain.ui.main
 
+import android.graphics.drawable.shapes.Shape
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Add
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.FloatingActionButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -11,11 +17,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.heenu.design.ui.theme.DColor
 import com.heenu.design.ui.theme.HeenuTheme
 import com.heenu.moneymountain.ui.main.page.HistoryScreen
 import com.heenu.moneymountain.ui.main.page.HomeScreen
@@ -43,20 +52,29 @@ fun MainScreen() {
                     selectedDestination,
                     navigationActions::navigateTo
                 )
-            }) { padding ->
+            },
+            floatingActionButton = { WriteFloatingButton() }) { padding ->
             NavigationGraph(padding, navController)
         }
     }
 }
 
+@Composable
+fun WriteFloatingButton() {
+    FloatingActionButton(
+        shape = RoundedCornerShape(100.dp),
+        contentColor = DColor.White,
+        containerColor = DColor.Yellow,
+        onClick = { }) {
+        Icon(Icons.Rounded.Add, null)
+    }
+}
 
 @Composable
 fun BottomNavBar(
     selectedDestination: String,
     navigateToTopLevelDestination: (BottomNavItem) -> Unit
 ) {
-
-
     NavigationBar {
         BottomNavItem.toList().forEach { item ->
             val selected = item.route == selectedDestination
@@ -94,5 +112,14 @@ fun NavigationGraph(padding: PaddingValues, navController: NavHostController) {
 
             SettingScreen()
         }
+    }
+}
+
+
+@Preview("mainScreen")
+@Composable
+fun PreviewMain() {
+    HeenuTheme {
+        MainScreen()
     }
 }

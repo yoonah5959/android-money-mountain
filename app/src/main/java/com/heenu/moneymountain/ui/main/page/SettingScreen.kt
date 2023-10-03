@@ -9,9 +9,10 @@ import com.heenu.design.ui.theme.DColor
 
 @Composable
 fun SettingScreen() {
-    Column(modifier = Modifier
-        .fillMaxSize()
-        .background(color = DColor.Pink40)) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+    ) {
 
     }
 }

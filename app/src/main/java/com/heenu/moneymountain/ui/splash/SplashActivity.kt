@@ -22,7 +22,6 @@ class SplashActivity : ComponentActivity() {
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(color = DColor.Pink40)
             ) {
 
                 val scope = rememberCoroutineScope()

@@ -12,7 +12,6 @@ fun HistoryScreen() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = DColor.Pink40)
     ) {
 
     }
