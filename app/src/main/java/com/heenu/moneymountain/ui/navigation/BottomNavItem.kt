@@ -1,11 +1,10 @@
-package com.heenu.moneymountain.ui.main
+package com.heenu.moneymountain.ui.navigation
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Home
 import androidx.compose.material.icons.rounded.List
 import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.ui.graphics.vector.ImageVector
-import kotlin.reflect.KClass
 
 
 sealed class BottomNavItem(var title: String, var icon: ImageVector, var route: String) {
